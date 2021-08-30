@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -81,6 +81,17 @@ WSGI_APPLICATION = 'apiUsers.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'datosapi',
+        'USER': 'joshua',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -137,5 +148,4 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+CORS_ORIGIN_ALLOW_ALL = True # added to solve CORS
